@@ -1,10 +1,9 @@
 package Sql;
 
-import java.util.List;
-import java.sql.Driver;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import com.mysql.jdbc.*;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
@@ -35,7 +34,7 @@ public class Database
 																		, userName
 																		, password
 																		);
-			System.out.print("connection established");
+			System.out.print("connection established\n\n");
 			return con;
 		
 		} 
@@ -67,7 +66,6 @@ public class Database
 		} 
 		catch (SQLException e)
 		{
-				// TODO Auto-generated catch block
 				e.printStackTrace();		
 		}  
 	}
@@ -76,41 +74,34 @@ public class Database
 		public static void insertNewStudent(Connection conn, Student student) 
 				throws ClassNotFoundException, SQLException 
 		{			
-			   // JDBC driver name and database URL
-			   final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-			   final String DB_URL = "jdbc:mysql://localhost/exceldatamanagement";
-
-			   //  Database credentials
-			   final String USER = "root";
-			   
-			   Statement stmt = null;
+			
 			   String query = "INSERT INTO schueler ("
 					    + " Name,"
-					    + " Klassenname,"
+					    + " KlassenBezeichnung,"
 					    + " Vorname,"
 					    + " Geburtsdatum,"
 					    + " Klassenstufe,"
-					    + " Geschlecht,"
-					    + " VALUES ("
-					    + "?, ?, ?, ?, ?, ?)";
-			   try {
+					    + " Geschlecht)"
+					    + " VALUES (?, ?, ?, ?, ?, ?)";
+			   try 
+			   {
 				    // set all the preparedstatement parameters
-				    java.sql.PreparedStatement st = conn.prepareStatement(query);
+				    PreparedStatement st = (PreparedStatement) conn.prepareStatement(query);
 				    st.setString(1, student.GetName());
 				    st.setString(2, student.GetKlassenStufe());
 				    st.setString(3, student.GetVorname());
 				    st.setDate	(4, (Date) student.GetGeburtsdatum());
 				    st.setString(5, student.GetKlassenStufe());
 				    st.setString(6, student.GetGeschlecht());
-
+				    
 				    // execute the preparedstatement insert
 				    st.executeUpdate();
 				    st.close();
-				  } 
-				  catch (SQLException se)
-				  {
+			   } 
+			   catch (SQLException se)
+			   {
 				    // log exception
 				    throw se;
-				  }
+			   }
 			}//end main
 }

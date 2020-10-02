@@ -4,10 +4,12 @@ package Verwaltung;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import javax.swing.JFileChooser;
 
 import org.eclipse.core.databinding.observable.Realm;
+import org.apache.commons.math3.util.MultidimensionalCounter.Iterator;
 import org.eclipse.core.*;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
@@ -42,22 +44,12 @@ public class SwtApplicationWindow
     public java.util.List<Student> allStudents = new ArrayList<Student>();
     private Table table_Students;
     private Table table_Classes;
-	@SuppressWarnings("deprecation")
+    
+    
 	public static void main(String[] args) 
     {
-		try 
-		{
-			java.sql.Connection con = Database.Open("localhost", "3306", "root", null);
-			con.close();
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
     	SwtApplicationWindow window = new SwtApplicationWindow();
     	window.open();
-    		
-  
     }
     
     // open window
@@ -118,9 +110,49 @@ public class SwtApplicationWindow
                     	// Filling up the list
                     	allStudents = reader.readStudentsFromExcelFile(path);
                     	
-                    	for(Student student:allStudents) 
+                    	java.util.Iterator<Student> AnyStudent = allStudents.iterator();
+                        
+                    	for (int i = 0; i < allStudents.size(); i++) 
+                        {
+                    		Student student = allStudents.get(i);
+                    		TableItem item = new TableItem(table_Students, SWT.NONE);
+                            // Filling up the students table with the imported data
+                    		for (int j = 0; j <= 5; j++) 
+                            {
+                    			switch(j) 
+                    			{
+                    				case 0: // Name column
+                    					item.setText(j, student.GetName());
+                    					break;
+                    				
+                    				case 1: // Class Name column
+                    					item.setText(j, student.GetKlassenName());
+                    					break;
+                    				
+                    				case 2: // FirstName column
+                    					item.setText(j, student.GetVorname());
+                    					break;
+                    				
+                    				case 3: // Day of birth column
+                    					item.setText(j, student.GetGeburtsdatum().toString());
+                    					break;
+                    					
+                    				case 4: // Class Level column
+                    					item.setText(j, student.GetKlassenStufe());
+                    					break;
+                    					
+                    				case 5: // Gender column
+                    					item.setText(j, student.GetGeschlecht());	
+                        				break;
+                    			}
+                            }
+                          
+                        }	
+                        
+                    	// Writing the list of students into the Database
+                    	while(AnyStudent.hasNext()) 
                     	{
-                    		Database.insertNewStudent(Database.Open("localhost", "3306", "root", null), student);
+                    		Database.insertNewStudent(Database.Open("localhost", "3306", "root", null), AnyStudent.next());
                     	}
                     	
 					} 
@@ -198,6 +230,7 @@ public class SwtApplicationWindow
         tblclmnGeburtstag.setMoveable(true);
         tblclmnGeburtstag.setWidth(100);
         tblclmnGeburtstag.setText("Geburtstag");
+        
         
         
         // Tab Item Classes

@@ -3,9 +3,14 @@ package Excel_ReadWrite;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.text.SimpleDateFormat;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,7 +25,7 @@ public class ReadExcel
 {
 	// Reads the input excel file and creates for each student a new Object of class Student
 	public List<Student> readStudentsFromExcelFile(String excelFilePath) 
-			throws IOException 
+			throws IOException, SQLException, ParseException 
 	{
 		List<Student> allStudents = new ArrayList<Student>();
 		FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
@@ -28,56 +33,76 @@ public class ReadExcel
 		Workbook workbook = getWorkbook(inputStream, excelFilePath);
 		Sheet firstSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = firstSheet.iterator();
-
+		Student student = new Student(null, null, null, null, null, null, null);
+		
 		while (iterator.hasNext()) 
 		{
 			
 			Row nextRow = iterator.next();
 			Iterator<Cell> cellIterator = nextRow.cellIterator();
-			Student student = new Student(null, null, null, null, null, null, null);
+			
 
 			while (cellIterator.hasNext()) 
 			{
 				Cell nextCell = cellIterator.next();
 				int columnIndex = nextCell.getColumnIndex();
-
+				int row = nextRow.getRowNum();
+				
+				if(row == 0) 
+				{
+					break;
+				}
+				
 				switch (columnIndex) 
 				{
 						case 0:
 							student.SetName(
-									(String) getCellValue(nextCell)
+									getCellValue(nextCell).toString()
 									);
 							break;
+							
 						case 1:
 							student.SetKlassenName(
-									(String) getCellValue(nextCell)
+									getCellValue(nextCell).toString()
 									);
 							break;
+							
 						case 2:
 							student.SetVorname(
-									(String) getCellValue(nextCell)
+									getCellValue(nextCell).toString()
 									);
 							break;
-						case 3:
+							
+						case 3: // Birthday
+							// Getting field content
+							String DateString = getCellValue(nextCell).toString();
+							
+							// Converting the date into a valid format
+							java.util.Date myString 
+												= SimpleDateFormat.getDateInstance(
+													java.text.DateFormat.SHORT, Locale.GERMANY)
+															.parse(DateString);
+		
 							student.SetGeburtsdatum(
-									 (Object) getCellValue(nextCell)
+										DateString
 									);
-							break;
+										break;
+
+							
 						case 4:
 							student.SetKlassenStufe(
-									(String) getCellValue(nextCell)
+									getCellValue(nextCell).toString()
 									);
 							break;
 						case 5:
 							student.SetGeschlecht(
-									(String) getCellValue(nextCell)
+									getCellValue(nextCell).toString()
 									);
 							break;
 				}
-				
-			allStudents.add(student); 
-			}
 			
+			}
+			allStudents.add(student); 
 		}
 
 		workbook.close();

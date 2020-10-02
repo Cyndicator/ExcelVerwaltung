@@ -1,5 +1,9 @@
 package Verwaltung;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class Student 
 {
 	private String Vorname;
@@ -7,7 +11,7 @@ public class Student
 	private String Email;
 	private String KlassenStufe;
 	private String KlassenName;
-	private Object Geburtsdatum;
+	private String Geburtsdatum;
 	private String Geschlecht;
 	
 	// Constructor
@@ -17,7 +21,7 @@ public class Student
 			, String aEmail
 			, String aKlassenStufe
 			, String aKlassenName
-			, Object aGeburtsdatum
+			, String aGeburtsdatum
 			, String aGeschlecht
 			) 
 	{
@@ -57,9 +61,11 @@ public class Student
 		return KlassenName;
 	}
 	
-	public Object GetGeburtsdatum() 
+	public Date GetGeburtsdatum() 
 	{
-		return Geburtsdatum;
+		return java.text.SimpleDateFormat.getDateInstance(
+						java.text.DateFormat.SHORT, Locale.GERMANY)
+								.parse(DateString);
 	}
 	
 	public String GetGeschlecht() 
@@ -94,9 +100,9 @@ public class Student
 		this.KlassenName = NewKlassenName;
 	}
 	
-	public void SetGeburtsdatum(Object object) 
+	public void SetGeburtsdatum(String NewGeburtsdatum) 
 	{
-		this.Geburtsdatum =  object;
+		this.Geburtsdatum =  NewGeburtsdatum;
 	}
 	
 	public void SetGeschlecht(String NewGeschlecht) 
@@ -104,7 +110,4 @@ public class Student
 		this.Geschlecht = NewGeschlecht;
 	}
 	//Ende Setter
-	
-	
-	
 }
