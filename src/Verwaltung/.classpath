@@ -5,16 +5,16 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="org.eclipse.swt.win32.win32.x86_64"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/org.eclipse.swt.win32.win32.x86_64_3.115.0.v20200831-1002.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/poi-4.1.2/poi-4.1.2.jar" sourcepath="/ExcelVerwaltung/poi-4.1.2/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/mysql-connector.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/org.eclipse.jface_3.21.0.v20200821-1458.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/org.eclipse.swt.win32.win32.x86_64_3.115.0.v20200831-1002.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/poi-4.1.2/poi-4.1.2.jar" sourcepath="/ExcelVerwaltung/poi-4.1.2/poi-4.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/mysql-connector.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/org.eclipse.jface_3.21.0.v20200821-1458.jar">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/jface/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/jface/action/*"/>
@@ -47,13 +47,13 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/org.eclipse.jface.databinding_1.12.0.v20200717-1533.jar" sourcepath="C:/Users/Cyndicator/.p2/pool/plugins/org.eclipse.jface.databinding_1.12.0.v20200717-1533.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/org.eclipse.core.databinding.observable_1.10.0.v20200730-0848.jar" sourcepath="C:/Users/Cyndicator/.p2/pool/plugins"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/commons-math3-3.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/commons-math3-3.6.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/commons-math3-3.6.1-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cyndicator/Desktop/Alles/Coding/ExcelManagementTool/ExcelVerwaltung/lib/commons-math3-3.6.1-tools.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/org.eclipse.jface.databinding_1.12.0.v20200717-1533.jar" sourcepath="C:/Users/Cyndicator/.p2/pool/plugins/org.eclipse.jface.databinding_1.12.0.v20200717-1533.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/org.eclipse.core.databinding.observable_1.10.0.v20200730-0848.jar" sourcepath="C:/Users/Cyndicator/.p2/pool/plugins"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/commons-collections4-4.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/commons-math3-3.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/commons-math3-3.6.1-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/commons-math3-3.6.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/lib/commons-math3-3.6.1-tools.jar"/>
+	<classpathentry kind="lib" path="swing2swt.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

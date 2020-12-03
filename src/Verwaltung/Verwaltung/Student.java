@@ -1,38 +1,53 @@
 package Verwaltung;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 public class Student 
 {
+	// Student Data
 	private String Vorname;
 	private String Name;
 	private String Email;
 	private String KlassenStufe;
 	private String KlassenName;
-	private String Geburtsdatum;
+	private Long   Geburtsdatum;
 	private String Geschlecht;
+	private String Hash;
 	
 	// Constructor
 	public Student(
-			  String aVorName
+	   		  String aVorName
 			, String aName
 			, String aEmail
 			, String aKlassenStufe
 			, String aKlassenName
-			, String aGeburtsdatum
+			, Long   aGeburtsdatum
 			, String aGeschlecht
-			) 
-	{
-		Vorname 	 = aVorName;
-		Name 		 = aName;
-		Email 		 = aEmail;
-		KlassenStufe = aKlassenStufe;
-		KlassenName  = aKlassenName;
-		Geburtsdatum = aGeburtsdatum;
-		Geschlecht   = aGeschlecht;
-	}
+			) {
+			Vorname 	 = aVorName;
+			Name 		 = aName;
+			Email 		 = aEmail;
+			KlassenStufe = aKlassenStufe;
+			KlassenName  = aKlassenName;
+			Geburtsdatum = aGeburtsdatum;
+			Geschlecht   = aGeschlecht;
+			}
+	
+	// Constructor II (without E-Mail)
+	public Student(
+	   		  String aVorName
+			, String aName
+			, String aKlassenStufe
+			, String aKlassenName
+			, Long   aGeburtsdatum
+			, String aGeschlecht
+			) {
+			Vorname 	 = aVorName;
+			Name 		 = aName;
+			Email 		 = null;
+			KlassenStufe = aKlassenStufe;
+			KlassenName  = aKlassenName;
+			Geburtsdatum = aGeburtsdatum;
+			Geschlecht   = aGeschlecht;
+			}
 	
 	
 	// Getter
@@ -61,19 +76,28 @@ public class Student
 		return KlassenName;
 	}
 	
-	public Date GetGeburtsdatum() 
+	public Long GetGeburtsdatum() 
 	{
-		return java.text.SimpleDateFormat.getDateInstance(
-						java.text.DateFormat.SHORT, Locale.GERMANY)
-								.parse(DateString);
+		return Geburtsdatum;
 	}
 	
 	public String GetGeschlecht() 
 	{
 		return Geschlecht;
 	}
-	// Ende Getter
 	
+	/**
+	 * @return the hash
+	 */
+	public String GetHash()
+	{
+		return Hash;
+	}
+	// Ende Getter
+
+
+
+
 	// Setter
 	public void SetVorname(String NewVorname) 
 	{
@@ -100,14 +124,37 @@ public class Student
 		this.KlassenName = NewKlassenName;
 	}
 	
-	public void SetGeburtsdatum(String NewGeburtsdatum) 
+	public void SetGeburtsdatum(Long NewDate) 
 	{
-		this.Geburtsdatum =  NewGeburtsdatum;
+		this.Geburtsdatum =  NewDate;
 	}
 	
 	public void SetGeschlecht(String NewGeschlecht) 
 	{
 		this.Geschlecht = NewGeschlecht;
 	}
+	
+	/**
+	 * @param  calculates the hash of the students data to create a unique identification number.
+	 * @throws Exception 
+	 */
+	public void SetHash(Student student) throws Exception
+	{
+		try 
+		{
+			Hash = Sql.CreateHash.sha1Student(student);
+		} 
+		catch(Exception e) 
+		{
+			throw new Exception("Couldn't create the Hash for the student: "
+									+ student.GetName()
+									+ ", " 
+									+ student.GetVorname()
+							    );
+		}
+	}
 	//Ende Setter
+	
+	
+	
 }

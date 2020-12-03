@@ -41,8 +41,8 @@ public class Classes {
 	}
 	//Ende getter
 	
-	//Start setter
 	
+	//Start setter
 	/** Sets the List of the students*/
 	public void setSchueler(List<Student> newSchueler)
 	{
@@ -60,6 +60,5 @@ public class Classes {
 	{
 		this.KlassenName = newKlassenName;
 	}
-
 	//Ende setter
 }

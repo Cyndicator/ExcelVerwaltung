@@ -1,6 +1,5 @@
 package Sql;
 
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -30,7 +29,7 @@ public class Database
 																		+ host 
 																		+ ":" 
 																		+ port 
-		 																+ "/exceldatamanagement"
+		 																+ "/excelmanagementdata"
 																		, userName
 																		, password
 																		);
@@ -74,15 +73,19 @@ public class Database
 		public static void insertNewStudent(Connection conn, Student student) 
 				throws ClassNotFoundException, SQLException 
 		{			
+			// Holds the Date
+			java.sql.Date Date = new java.sql.Date(student.GetGeburtsdatum());
 			
-			   String query = "INSERT INTO schueler ("
+			   String query 
+			   			= "INSERT INTO schueler ("
 					    + " Name,"
 					    + " KlassenBezeichnung,"
 					    + " Vorname,"
 					    + " Geburtsdatum,"
 					    + " Klassenstufe,"
-					    + " Geschlecht)"
-					    + " VALUES (?, ?, ?, ?, ?, ?)";
+					    + " Geschlecht,"
+					    + " ID)"
+					    + " VALUES (?, ?, ?, ?, ?, ?, ?)";
 			   try 
 			   {
 				    // set all the preparedstatement parameters
@@ -90,9 +93,10 @@ public class Database
 				    st.setString(1, student.GetName());
 				    st.setString(2, student.GetKlassenStufe());
 				    st.setString(3, student.GetVorname());
-				    st.setDate	(4, (Date) student.GetGeburtsdatum());
+				    st.setDate	(4,  Date);
 				    st.setString(5, student.GetKlassenStufe());
 				    st.setString(6, student.GetGeschlecht());
+				    st.setString(7, student.GetHash());
 				    
 				    // execute the preparedstatement insert
 				    st.executeUpdate();
@@ -103,5 +107,5 @@ public class Database
 				    // log exception
 				    throw se;
 			   }
-			}//end main
+			} //end main
 }
