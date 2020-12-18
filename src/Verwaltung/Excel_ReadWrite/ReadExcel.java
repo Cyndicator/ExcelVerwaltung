@@ -88,6 +88,7 @@ public class ReadExcel
 		
 		workbook.close();
 		inputStream.close();
+		
 		for (Student students : allStudents)
 		{
 			System.out.print(students.GetName() + "\n");

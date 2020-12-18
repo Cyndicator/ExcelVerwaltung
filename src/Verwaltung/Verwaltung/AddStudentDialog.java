@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.events.VerifyListener;
+import org.eclipse.swt.events.VerifyEvent;
 
 public class AddStudentDialog extends Dialog
 {
@@ -36,30 +38,33 @@ public class AddStudentDialog extends Dialog
 	{
 		super(parent, style);
 		setText("Schueler hinzufuegen");
-		open();
+		dialog.open();
 	}
 	
 	/**
 	 * Open the dialog.
 	 * @return the result
+	 * @throws InterruptedException 
 	 */
-	public Object open()
+	public void open() throws InterruptedException
 	{
 		createContents();
 		dialog.open();
 		dialog.layout();
-		Display display = getParent().getDisplay();
+		Shell display = this.getParent();
 		
 		while (!dialog.isDisposed())
 		{
-			if (!display.readAndDispatch())
+			if (!display.isDisposed())
 			{
-				display.sleep();
+				display.wait();
 			}
 			
 		}
+		
 		result = data;
-		return result;
+		display.dispose();
+
 	}
 	
 	/**
@@ -68,8 +73,8 @@ public class AddStudentDialog extends Dialog
 	private void createContents()
 	{
 		
-		dialog = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER);
-		dialog.setSize(450, 321);
+		dialog = new Shell(getParent(), SWT.SHELL_TRIM | SWT.BORDER | SWT.SYSTEM_MODAL);
+		dialog.setSize(446, 320);
 		dialog.setText(getText());
 		dialog.setLayout(null);
 		
@@ -99,6 +104,10 @@ public class AddStudentDialog extends Dialog
 		lblKlasse.setText("Klasse:");
 		
 		txtKlasse = new Text(dialog, SWT.BORDER);
+		txtKlasse.addVerifyListener(new VerifyListener() {
+			public void verifyText(VerifyEvent arg0) {
+			}
+		});
 		txtKlasse.setBounds(212, 96, 151, 31);
 		
 		Label lblKlassenstufe = new Label(dialog, SWT.NONE);
@@ -115,7 +124,7 @@ public class AddStudentDialog extends Dialog
 		txtGeschlecht = new Text(dialog, SWT.BORDER);
 		txtGeschlecht.setBounds(212, 158, 151, 31);
 		// Button "OK"
-		Button btnAddStudent = new Button(dialog, SWT.NONE);
+		Button btnAddStudent = new Button(dialog, SWT.PUSH);
 		btnAddStudent.addSelectionListener(new SelectionAdapter() { // Button Click Event
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -155,7 +164,16 @@ public class AddStudentDialog extends Dialog
 				String Klassenstufe	= data[4];
 				String Geschlecht	= data[5];
 				// Creating the Student!
-				student = new Student(Name, Vorname, Klasse, Klassenstufe, Geburtsdatum, Geschlecht);
+				try
+				{
+					student = new Student(Name, Vorname, Klasse, Klassenstufe, Geburtsdatum, Geschlecht);
+					
+				} catch (Exception e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+				}
 				System.out.println(student.GetName());
 			}
 		});

@@ -4,20 +4,19 @@ package Verwaltung;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.TableRowSorter;
 
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -25,17 +24,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import Excel_ReadWrite.ReadExcel;
 import Sql.Database;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Dialog;
 
 
 public class SwtApplicationWindow 
@@ -241,7 +234,7 @@ public class SwtApplicationWindow
         
         
         // Student Table creation 
-        table_Students = new Table(tab, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI);
+        table_Students = new Table(tab, SWT.BORDER | SWT.FULL_SELECTION | SWT.SINGLE);
         tabItemSchueler.setControl(table_Students);
         table_Students.setHeaderVisible(true);
         table_Students.setLinesVisible(true);
@@ -307,12 +300,9 @@ public class SwtApplicationWindow
         btnBotNewStudent.addSelectionListener(new SelectionAdapter() {
         	@Override
         	public void widgetSelected(SelectionEvent e) 
-        	{
-        		
-        		Dialog x = new AddStudentDialog(shlSwtApplication, SWT.None);
-        		x.getText().
+        	{    		
 
-        		
+        		allStudents.add((Student) new AddStudentDialog(shlSwtApplication, SWT.DIALOG_TRIM).result);
         	}
         });
         btnBotNewStudent.setCursor(SWTResourceManager.getCursor(SWT.CURSOR_CROSS));

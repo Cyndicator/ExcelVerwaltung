@@ -39,7 +39,7 @@ public class Student
 			, String aKlassenName
 			, Long   aGeburtsdatum
 			, String aGeschlecht
-			) {
+			) throws Exception{
 			Vorname 	 = aVorName;
 			Name 		 = aName;
 			Email 		 = null;
@@ -47,6 +47,15 @@ public class Student
 			KlassenName  = aKlassenName;
 			Geburtsdatum = aGeburtsdatum;
 			Geschlecht   = aGeschlecht;
+			try 
+			{
+				this.SetHash(this);
+			}
+			catch(Exception e) 
+			{
+				throw e;
+			}
+			
 			}
 	
 	

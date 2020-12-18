@@ -101,6 +101,8 @@ public class Database
 				    // execute the preparedstatement insert
 				    st.executeUpdate();
 				    st.close();
+				    conn.close();
+				    System.out.println("Connection closed");
 			   } 
 			   catch (SQLException se)
 			   {

@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Excel_ReadWrite/ExportToExcel.java</name>
+			<type>1</type>
+			<location>C:/Users/Fredel/Desktop/Coding/ExcelVerwaltung/src/Verwaltung/Excel_ReadWrite/ExportToExcel.java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
